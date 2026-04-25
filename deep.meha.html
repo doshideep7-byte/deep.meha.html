@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Deep & Meha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --royal-red: #8B0000;
+            --gold: #D4AF37;
+            --light-gold: #f9e29b;
+            --cream: #FFFDD0;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: var(--royal-red);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: var(--cream);
+        }
+
+        /* Moving Mandala Background */
+        .mandala-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Mandala_10.svg/1024px-Mandala_10.svg.png');
+            background-size: contain;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            animation: rotateMandala 60s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotateMandala {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Video Slide Container */
+        .video-container {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .slide {
+            position: absolute;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideSequence 35s infinite;
+        }
+
+        /* Timing for 5 Slides (7 seconds each) */
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 7s; }
+        .slide:nth-child(3) { animation-delay: 14s; }
+        .slide:nth-child(4) { animation-delay: 21s; }
+        .slide:nth-child(5) { animation-delay: 28s; }
+
+        @keyframes slideSequence {
+            0%, 5% { opacity: 0; transform: translateY(20px); }
+            10%, 20% { opacity: 1; transform: translateY(0); }
+            25%, 100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; color: var(--gold); margin: 0; }
+        h2 { font-family: 'Cinzel Decorative', cursive; font-size: 2rem; color: var(--light-gold); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; }
+        .shubh { font-size: 1.5rem; color: var(--gold); letter-spacing: 5px; margin-bottom: 10px; }
+        .details { margin-top: 20px; font-weight: 300; }
+        .dress-code { color: var(--light-gold); font-size: 0.85rem; margin-top: 15px; border: 1px dashed var(--gold); padding: 10px; border-radius: 8px; }
+        
+        /* Ganesha Icon */
+        .ganesha { width: 80px; filter: invert(74%) sepia(59%) saturate(350%) hue-rotate(5deg); margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="mandala-bg"></div>
+
+    <div class="video-container">
+        
+        <div class="slide">
+            <img src="https://cdn-icons-png.flaticon.com/512/1041/1041935.png" class="ganesha" alt="Ganesha">
+            <div class="shubh">|| SHUBH VIVAH ||</div>
+            <p>Together with their families</p>
+            <h1>Deep & Meha</h1>
+            <p>Invite you to celebrate their union</p>
+            <div class="details">
+                <strong>22nd & 23rd June 2026</strong><br>
+                Oswal Centre, Jamnagar
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Day 1: 22nd June</h2>
+            <h3>Mandap & Mameru</h3>
+            <p><strong>Mandap:</strong> 2:30 PM at Keshav Hall</p>
+            <p><strong>Mameru:</strong> 4:00 PM Onwards</p>
+            <div class="dress-code">
+                <strong>Dress Code (Traditional)</strong><br>
+                Men: Kurta Pyjama | Women: Gharcholas/Bandhani/Sarees
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Ring Ceremony & Sangeet</h2>
+            <p>June 22nd | 7:30 PM Onwards</p>
+            <p>Join us for an evening of music, dance, and celebration!</p>
+            <div class="dress-code">
+                <strong>Dress Code (Indo-Western)</strong><br>
+                Men: Kurta/Indo Western | Women: Chaniya Choli/Gowns
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Day 2: 23rd June</h2>
+            <h3>Haldi Ceremony</h3>
+            <p>9:00 AM Onwards</p>
+            <p>Let's drench the couple in yellow hues of love!</p>
+            <div class="dress-code">
+                <strong>Dress Code (Yellow/Traditional)</strong><br>
+                Men: Kurta | Women: Plazzo Suit/Sarees
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Baraat & Lagan</h2>
+            <p>June 23rd | 4:00 PM Onwards</p>
+            <p>The Grand Celebration</p>
+            <div class="dress-code">
+                <strong>Dress Code (Royal Formals)</strong><br>
+                Men: Jodhpuri/Modi Coat | Women: Sarees/Chaniya Choli
+            </div>
+            <h1 style="font-size: 2.5rem; margin-top: 20px;">We await your presence!</h1>
+        </div>
+
+    </div>
+
+    <iframe src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&loop=1&mute=0" style="display:none" allow="autoplay"></iframe>
+
+</body>
+</html>
