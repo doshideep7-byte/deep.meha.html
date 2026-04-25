@@ -3,156 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Deep & Meha</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel+Decorative:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <title>Deep & Meha | The Royal Union</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --royal-red: #8B0000;
-            --gold: #D4AF37;
-            --light-gold: #f9e29b;
-            --cream: #FFFDD0;
+            --royal-maroon: #630303;
+            --deep-gold: #b38b2d;
+            --bright-gold: #f3cf7a;
+            --cream: #fffdf5;
+            --glass: rgba(99, 3, 3, 0.6);
         }
+
+        * { box-sizing: border-box; }
 
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
-            background-color: var(--royal-red);
-            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
             overflow: hidden;
             color: var(--cream);
         }
 
-        /* Moving Mandala Background */
-        .mandala-bg {
+        /* Video/Animated Background Container */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #8b0000 0%, #3a0101 100%);
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Floating Sparkles Effect */
+        .particles {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 600px;
-            height: 600px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.4;
+            animation: drift 20s linear infinite;
+        }
+
+        /* Large Rotating Mandala */
+        .mandala {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
             background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Mandala_10.svg/1024px-Mandala_10.svg.png');
             background-size: contain;
-            opacity: 0.1;
-            transform: translate(-50%, -50%);
-            animation: rotateMandala 60s linear infinite;
-            z-index: 0;
+            opacity: 0.08;
+            animation: rotate 100s linear infinite;
         }
 
-        @keyframes rotateMandala {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes drift { from { background-position: 0 0; } to { background-position: 500px 1000px; } }
 
-        /* Video Slide Container */
-        .video-container {
-            position: relative;
+        /* Main Content Slider */
+        .content-wrapper {
             height: 100vh;
-            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2;
+            perspective: 1000px;
         }
 
         .slide {
             position: absolute;
+            width: 85%;
+            max-width: 500px;
+            padding: 40px 20px;
             text-align: center;
-            width: 90%;
-            max-width: 600px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--deep-gold);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             opacity: 0;
-            transform: translateY(20px);
-            animation: slideSequence 35s infinite;
+            transform: scale(0.8) rotateX(10deg);
+            transition: all 1s ease-in-out;
+            pointer-events: none;
         }
 
-        /* Timing for 5 Slides (7 seconds each) */
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 7s; }
-        .slide:nth-child(3) { animation-delay: 14s; }
-        .slide:nth-child(4) { animation-delay: 21s; }
-        .slide:nth-child(5) { animation-delay: 28s; }
-
-        @keyframes slideSequence {
-            0%, 5% { opacity: 0; transform: translateY(20px); }
-            10%, 20% { opacity: 1; transform: translateY(0); }
-            25%, 100% { opacity: 0; transform: translateY(-20px); }
+        /* Logic for showing slides */
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) rotateX(0deg);
+            pointer-events: all;
         }
 
-        h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; color: var(--gold); margin: 0; }
-        h2 { font-family: 'Cinzel Decorative', cursive; font-size: 2rem; color: var(--light-gold); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; }
-        .shubh { font-size: 1.5rem; color: var(--gold); letter-spacing: 5px; margin-bottom: 10px; }
-        .details { margin-top: 20px; font-weight: 300; }
-        .dress-code { color: var(--light-gold); font-size: 0.85rem; margin-top: 15px; border: 1px dashed var(--gold); padding: 10px; border-radius: 8px; }
+        /* Typography */
+        .ganesha { width: 60px; margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--bright-gold)); }
+        .shubh { font-family: 'Cinzel', serif; letter-spacing: 6px; color: var(--bright-gold); font-size: 0.9rem; margin-bottom: 10px; }
+        h1 { font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 10vw, 4.5rem); color: var(--bright-gold); margin: 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        h2 { font-family: 'Cinzel', serif; color: var(--bright-gold); font-size: 1.5rem; text-transform: uppercase; margin-bottom: 20px; }
         
-        /* Ganesha Icon */
-        .ganesha { width: 80px; filter: invert(74%) sepia(59%) saturate(350%) hue-rotate(5deg); margin-bottom: 20px; }
+        .date-box {
+            border-top: 1px solid var(--deep-gold);
+            border-bottom: 1px solid var(--deep-gold);
+            padding: 15px 0;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .dress-code {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* Audio Controls */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--deep-gold);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--bright-gold);
+        }
 
     </style>
 </head>
 <body>
 
-    <div class="mandala-bg"></div>
-
-    <div class="video-container">
-        
-        <div class="slide">
-            <img src="https://cdn-icons-png.flaticon.com/512/1041/1041935.png" class="ganesha" alt="Ganesha">
-            <div class="shubh">|| SHUBH VIVAH ||</div>
-            <p>Together with their families</p>
-            <h1>Deep & Meha</h1>
-            <p>Invite you to celebrate their union</p>
-            <div class="details">
-                <strong>22nd & 23rd June 2026</strong><br>
-                Oswal Centre, Jamnagar
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>Day 1: 22nd June</h2>
-            <h3>Mandap & Mameru</h3>
-            <p><strong>Mandap:</strong> 2:30 PM at Keshav Hall</p>
-            <p><strong>Mameru:</strong> 4:00 PM Onwards</p>
-            <div class="dress-code">
-                <strong>Dress Code (Traditional)</strong><br>
-                Men: Kurta Pyjama | Women: Gharcholas/Bandhani/Sarees
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>Ring Ceremony & Sangeet</h2>
-            <p>June 22nd | 7:30 PM Onwards</p>
-            <p>Join us for an evening of music, dance, and celebration!</p>
-            <div class="dress-code">
-                <strong>Dress Code (Indo-Western)</strong><br>
-                Men: Kurta/Indo Western | Women: Chaniya Choli/Gowns
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>Day 2: 23rd June</h2>
-            <h3>Haldi Ceremony</h3>
-            <p>9:00 AM Onwards</p>
-            <p>Let's drench the couple in yellow hues of love!</p>
-            <div class="dress-code">
-                <strong>Dress Code (Yellow/Traditional)</strong><br>
-                Men: Kurta | Women: Plazzo Suit/Sarees
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>Baraat & Lagan</h2>
-            <p>June 23rd | 4:00 PM Onwards</p>
-            <p>The Grand Celebration</p>
-            <div class="dress-code">
-                <strong>Dress Code (Royal Formals)</strong><br>
-                Men: Jodhpuri/Modi Coat | Women: Sarees/Chaniya Choli
-            </div>
-            <h1 style="font-size: 2.5rem; margin-top: 20px;">We await your presence!</h1>
-        </div>
-
+    <div class="bg-container">
+        <div class="particles"></div>
+        <div class="mandala"></div>
     </div>
 
-    <iframe src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&loop=1&mute=0" style="display:none" allow="autoplay"></iframe>
+    <button id="music-control">🎵</button>
 
+    <div class="content-wrapper">
+        <div class="slide active">
+            <img src="https://cdn-icons-png.flaticon.com/512/1041/1041935.png" class="ganesha" alt="Ganesha">
+            <div class="shubh">|| SHUBH VIVAH ||</div>
+            <p>Families of Deep & Meha Request Your Presence</p>
+            <h1>Deep & Meha</h1>
+            <div class="date-box">JUNE 22 - 23, 2026</div>
+            <p>Oswal Centre, Jamnagar</p>
+        </div>
+
+        <div class="slide">
+            <h2>Day 01: Rituals</h2>
+            <p><strong>Mandap Mahurat:</strong> 2:30 PM</p>
+            <p><strong>Mameru Ceremony:</strong> 4:00 PM</p>
+            <p>Keshav Hall, Jamnagar</p>
+            <div class="dress-code">Dress Code: Traditional Vibrant</div>
+        </div>
+
+        <div class="slide">
+            <h2>Sangeet Night</h2>
+            <p>An evening of rhythm and melodies</p>
+            <h3 style="color:var(--bright-gold)">7:30 PM Onwards</h3>
+            <div class="dress-code">Dress Code: Indo-Western Glitz</div>
+        </div>
+
+        <div class="slide">
+            <h2>The Wedding</h2>
+            <p><strong>Haldi:</strong> 9:00 AM (June 23)</p>
+            <p><strong>Baraat:</strong> 4:00 PM</p>
+            <p><strong>Hasta Melap:</strong> 6:30 PM</p>
+            <div class="dress-code">Dress Code: Royal Formals</div>
+        </div>
+
+        <div class="slide">
+            <h1>Thank You</h1>
+            <p>We can't wait to celebrate with you!</p>
+            <p style="margin-top: 30px; font-size: 0.8rem; letter-spacing: 3px;">#DEEPLOVESMEHA</p>
+        </div>
+    </div>
+
+    <iframe id="youtube-audio" src="https://www.youtube.com/embed/5qap5aO4i9A?enablejsapi=1&autoplay=1&mute=1" style="display:none"></iframe>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        // Slide Transition Logic
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 6 seconds
+        setInterval(nextSlide, 6000);
+
+        // Music Toggle Logic
+        const musicBtn = document.getElementById('music-control');
+        const iframe = document.getElementById('youtube-audio');
+        let isMuted = true;
+
+        musicBtn.onclick = () => {
+            if(isMuted) {
+                // This is a hack for YouTube iframe to unmute
+                iframe.src = iframe.src.replace("mute=1", "mute=0");
+                musicBtn.innerText = "🔊";
+            } else {
+                iframe.src = iframe.src.replace("mute=0", "mute=1");
+                musicBtn.innerText = "🔇";
+            }
+            isMuted = !isMuted;
+        };
+    </script>
 </body>
 </html>
